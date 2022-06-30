@@ -19,7 +19,7 @@ type Book struct {
 }
 
 type Author struct {
-	name string `json:"name"`
+	Name string `json:"name"`
 }
 
 var books []Book
@@ -75,6 +75,17 @@ func updateBook(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
 
 	params := mux.Vars(r)
+
+	var book Book
+	_ = json.NewDecoder(r.Body).Decode(&book)
+
+	for index, item := range books {
+		if item.ID == params["id"] {
+			books[index] = book
+			json.NewEncoder(w).Encode(book)
+			return
+		}
+	}
 }
 
 func main() {
@@ -84,7 +95,7 @@ func main() {
 		ID:    "1",
 		Title: "Sapiens",
 		Author: &Author{
-			name: "Yuval Noah Harari",
+			Name: "Yuval Noah Harari",
 		},
 	})
 
@@ -92,15 +103,15 @@ func main() {
 		ID:    "2",
 		Title: "Khi Loi Thuoc Ve Nhung Vi Sao",
 		Author: &Author{
-			name: "John Green",
+			Name: "John Green",
 		},
 	})
 
-	r.HandleFunc("/books", listBooks).Method("GET")
-	r.HandleFunc("/books/[id]", getBook).Method("GET")
-	r.HandleFunc("/books", createBook).method("POST")
-	r.HandleFunc("/books/[id]", updateBook).method("PATCH")
-	r.HandleFunc("/books/[id]", deleteBook).method("DELETE")
+	r.HandleFunc("/books", listBooks).Methods("GET")
+	r.HandleFunc("/books/{id}", getBook).Methods("GET")
+	r.HandleFunc("/books", createBook).Methods("POST")
+	r.HandleFunc("/books/{id}", updateBook).Methods("PATCH")
+	r.HandleFunc("/books/{id}", deleteBook).Methods("DELETE")
 
 	fmt.Printf("Starting web server at port 8000\n")
 
