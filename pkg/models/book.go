@@ -19,6 +19,18 @@ func init() {
 	config.Connect()
 	db = config.GetDBClient()
 	db.AutoMigrate(&Book{})
+
+	books = append(books, Book{
+		ID:       1,
+		Title:    "Sapiens",
+		AuthorId: 1,
+	})
+
+	books = append(books, Book{
+		ID:       2,
+		Title:    "Khi Loi Thuoc Ve Nhung Vi Sao",
+		AuthorId: 1,
+	})
 }
 
 var books []Book
