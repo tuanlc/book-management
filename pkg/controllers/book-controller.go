@@ -77,7 +77,7 @@ func UpdateBook(w http.ResponseWriter, r *http.Request) {
 
 	params := mux.Vars(r)
 
-	book := models.Book{}
+	book := &models.Book{}
 	utils.ParseBody(r, book)
 
 	ID, err := strconv.ParseInt(params["id"], 0, 0)
@@ -86,7 +86,7 @@ func UpdateBook(w http.ResponseWriter, r *http.Request) {
 		fmt.Printf("Error while parsing ID")
 	}
 
-	updatedBook := models.UpdateBook(ID, &book)
+	updatedBook := models.UpdateBook(ID, book)
 
 	res, _ := json.Marshal(updatedBook)
 
