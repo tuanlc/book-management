@@ -45,16 +45,11 @@ func DeleteBook(bookId int64) *[]Book {
 }
 
 func GetBook(bookId int64) *Book {
-	var foundBook *Book
+	var foundBook Book
 
-	for _, item := range books {
-		if item.ID == bookId {
-			foundBook = &item
-			break
-		}
-	}
+	db.Where("ID=?", bookId).Find(&foundBook)
 
-	return foundBook
+	return &foundBook
 }
 
 func CreateBook(b *Book) *Book {
