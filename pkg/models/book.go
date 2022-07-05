@@ -24,8 +24,6 @@ func init() {
 	db.AutoMigrate(&Book{})
 }
 
-var books []Book
-
 func ListBooks() []Book {
 	var books []Book
 	db.Find(&books)
@@ -59,12 +57,7 @@ func CreateBook(b *Book) *Book {
 func UpdateBook(bookId int64, data *Book) *Book {
 	var updateBook *Book
 
-	for index, item := range books {
-		if item.ID == bookId {
-			books[index] = *data
-			break
-		}
-	}
+	db.Model(&updateBook).Select("*").Where("ID=?", bookId).Updates(data)
 
 	return updateBook
 }
