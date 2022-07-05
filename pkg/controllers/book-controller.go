@@ -61,10 +61,10 @@ func GetBook(w http.ResponseWriter, r *http.Request) {
 func CreateBook(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
 
-	book := models.Book{}
+	book := &models.Book{}
 	utils.ParseBody(r, book)
 
-	createdBook := models.CreateBook(&book)
+	createdBook := models.CreateBook(book)
 
 	res, _ := json.Marshal(createdBook)
 
