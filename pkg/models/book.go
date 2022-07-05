@@ -27,6 +27,9 @@ func init() {
 var books []Book
 
 func ListBooks() []Book {
+	var books []Book
+	db.Find(&books)
+
 	return books
 }
 
