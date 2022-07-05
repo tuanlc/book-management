@@ -49,7 +49,8 @@ func GetBook(bookId int64) *Book {
 
 func CreateBook(b *Book) *Book {
 	book := Book{Title: b.Title, AuthorId: b.AuthorId, Summary: b.Summary}
-	db.Select("ID", "Title", "Summary", "AuthorId", "CreatedAt", "UpdatedAt").Create(&book)
+
+	db.Select("*").Create(&book)
 
 	return &book
 }
