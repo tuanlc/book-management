@@ -57,10 +57,11 @@ func GetBook(bookId int64) *Book {
 	return foundBook
 }
 
-func CreateBook(book *Book) *Book {
-	books = append(books, *book)
+func CreateBook(b *Book) *Book {
+	book := Book{Title: b.Title, AuthorId: b.AuthorId, Summary: b.Summary}
+	db.Select("ID", "Title", "Summary", "AuthorId", "CreatedAt", "UpdatedAt").Create(&book)
 
-	return book
+	return &book
 }
 
 func UpdateBook(bookId int64, data *Book) *Book {
