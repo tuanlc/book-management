@@ -12,9 +12,13 @@
 ### Prequisite
 - Install hot reload tool: https://github.com/cosmtrek/air
 
+```sh
+make deps
+```
+
 ### Run
 ```sh
-$ air
+$ make run
 ```
 
 ## License
