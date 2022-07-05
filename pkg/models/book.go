@@ -55,9 +55,9 @@ func CreateBook(b *Book) *Book {
 }
 
 func UpdateBook(bookId int64, data *Book) *Book {
-	var updateBook *Book
+	var updateBook Book
 
-	db.Model(&updateBook).Select("*").Where("ID=?", bookId).Updates(data)
+	db.Model(&updateBook).Select("*").Where("ID=?", bookId).Updates(Book{Title: data.Title, Summary: data.Summary, AuthorId: data.AuthorId})
 
-	return updateBook
+	return &updateBook
 }
