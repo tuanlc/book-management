@@ -33,15 +33,12 @@ func ListBooks() []Book {
 	return books
 }
 
-func DeleteBook(bookId int64) *[]Book {
-	for index, item := range books {
-		if item.ID == bookId {
-			books = append(books[:index], books[index+1:]...)
-			break
-		}
-	}
+func DeleteBook(bookId int64) Book {
+	var book Book
 
-	return &books
+	db.Where("ID=?", bookId).Delete(&book)
+
+	return book
 }
 
 func GetBook(bookId int64) *Book {
