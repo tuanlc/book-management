@@ -12,7 +12,7 @@ var db *gorm.DB
 type Book struct {
 	ID        int64     `gorm:"primaryKey" json:"id"`
 	Title     string    `json:"title"`
-	AuthorId  int       `json:"authorId"`
+	Author    string    `json:"author"`
 	Summary   string    `json:"summary"`
 	CreatedAt time.Time `json:"createAt"`
 	UpdatedAt time.Time `json:"updatedAt"`
@@ -48,7 +48,7 @@ func GetBook(bookId int64) *Book {
 }
 
 func CreateBook(b *Book) *Book {
-	book := Book{Title: b.Title, AuthorId: b.AuthorId, Summary: b.Summary}
+	book := Book{Title: b.Title, Author: b.Author, Summary: b.Summary}
 
 	db.Select("*").Create(&book)
 
@@ -58,7 +58,7 @@ func CreateBook(b *Book) *Book {
 func UpdateBook(bookId int64, data *Book) *Book {
 	var updateBook Book
 
-	db.Model(&updateBook).Select("*").Where("ID=?", bookId).Updates(Book{Title: data.Title, Summary: data.Summary, AuthorId: data.AuthorId})
+	db.Model(&updateBook).Select("*").Where("ID=?", bookId).Updates(Book{Title: data.Title, Summary: data.Summary, Author: data.Author})
 
 	return &updateBook
 }
