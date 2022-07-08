@@ -3,6 +3,9 @@ BINARY_NAME=main.out
 deps:
 	go install github.com/cosmtrek/air@latest
 
+test:
+	go test ./... -v
+
 build:
 	go build -o ${BINARY_NAME} ./cmd/main.go
 

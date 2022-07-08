@@ -17,6 +17,13 @@
 make deps
 ```
 
+### Configure databse DNS
+Set the environment varibale `DATABASE_DNS` to configure database DNS. For example:
+
+```
+$ DATABASE_DNS=host=localhost user=admin password=admin dbname=book-management port=5432 sslmode=disable TimeZone=Asia/Ho_Chi_Minh
+```
+
 ### Run
 ```sh
 $ make run
