@@ -1,0 +1,22 @@
+syntax = "proto3";
+
+package book;
+
+option go_package = "github.com/tuanlc/book-management/pkg/grpc";
+
+message Book {
+  int64 id = 1;
+  string title = 2;
+  string author = 3;
+  string summary = 4;
+  string createdAt = 5;
+  string updatedAt = 6;
+}
+
+message GetBookRequest {
+  int64 id = 1;
+}
+
+service BookService {
+  rpc getBook(GetBookRequest) returns (Book) {}
+}
