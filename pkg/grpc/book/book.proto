@@ -2,7 +2,7 @@ syntax = "proto3";
 
 package book;
 
-option go_package = "github.com/tuanlc/book-management/pkg/grpc";
+option go_package = "github.com/tuanlc/book-management/pkg/grpc/book";
 
 message Book {
   int64 id = 1;
@@ -18,5 +18,5 @@ message GetBookRequest {
 }
 
 service BookService {
-  rpc getBook(GetBookRequest) returns (Book) {}
+  rpc getBook(GetBookRequest) returns (Book);
 }
