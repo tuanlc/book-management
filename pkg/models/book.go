@@ -4,6 +4,7 @@ import (
 	"github.com/tuanlc/book-management/pkg/config"
 	"github.com/tuanlc/book-management/pkg/types"
 	"gorm.io/gorm"
+	"gorm.io/gorm/clause"
 )
 
 var db *gorm.DB
@@ -24,7 +25,7 @@ func ListBooks() []types.Book {
 func DeleteBook(bookId int64) types.Book {
 	var book types.Book
 
-	db.Where("ID=?", bookId).Delete(&book)
+	db.Clauses(clause.Returning{}).Where("ID=?", bookId).Delete(&book)
 
 	return book
 }
