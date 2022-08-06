@@ -8,6 +8,7 @@ import (
 
 	"github.com/gorilla/mux"
 	"github.com/tuanlc/book-management/pkg/models"
+	"github.com/tuanlc/book-management/pkg/types"
 	"github.com/tuanlc/book-management/pkg/utils"
 )
 
@@ -61,7 +62,7 @@ func GetBook(w http.ResponseWriter, r *http.Request) {
 func CreateBook(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
 
-	book := &models.Book{}
+	book := &types.Book{}
 	utils.ParseBody(r, book)
 
 	createdBook := models.CreateBook(book)
@@ -77,7 +78,7 @@ func UpdateBook(w http.ResponseWriter, r *http.Request) {
 
 	params := mux.Vars(r)
 
-	book := &models.Book{}
+	book := &types.Book{}
 	utils.ParseBody(r, book)
 
 	ID, err := strconv.ParseInt(params["id"], 0, 0)
