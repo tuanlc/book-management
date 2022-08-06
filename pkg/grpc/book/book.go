@@ -2,8 +2,6 @@ package book
 
 import (
 	"context"
-	"fmt"
-	"log"
 
 	"github.com/tuanlc/book-management/pkg/models"
 )
@@ -13,16 +11,7 @@ type Server struct {
 }
 
 func (s *Server) GetBook(ctx context.Context, in *GetBookRequest) (*GetBookResponse, error) {
-	log.Printf("Receive request from client %v\n", in.Id)
-
 	book := models.GetBook(in.Id)
-
-	fmt.Printf("found book %v", &GetBookResponse{
-		Error: &ResponseError{
-			Code:    "404",
-			Message: "The book is not found",
-		},
-	})
 
 	if book.ID == 0 {
 		return &GetBookResponse{
@@ -35,5 +24,20 @@ func (s *Server) GetBook(ctx context.Context, in *GetBookRequest) (*GetBookRespo
 
 	return &GetBookResponse{
 		Book: &Book{Id: book.ID, Title: book.Title, Summary: book.Summary, Author: book.Author, CreatedAt: book.CreatedAt.String(), UpdatedAt: book.UpdatedAt.String()},
+	}, nil
+}
+
+func (s *Server) ListBooks(ctx context.Context, in *ListBookRequest) (*ListBookResponse, error) {
+	books := models.ListBooks()
+
+	responseBooks := make([]*Book, len(books))
+
+	for i := 0; i < len(books); i++ {
+		book := books[i]
+		responseBooks[i] = &Book{Id: book.ID, Title: book.Title, Summary: book.Summary, Author: book.Author, CreatedAt: book.CreatedAt.String(), UpdatedAt: book.UpdatedAt.String()}
+	}
+
+	return &ListBookResponse{
+		Books: responseBooks,
 	}, nil
 }
