@@ -5,6 +5,5 @@ import (
 )
 
 func main() {
-	// rest.Serve()
 	grpc.Serve()
 }
