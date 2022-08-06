@@ -57,3 +57,20 @@ func (s *Server) CreateBook(ctx context.Context, in *CreateBookRequest) (*Create
 		Book: &Book{Id: book.ID, Title: book.Title, Summary: book.Summary, Author: book.Author, CreatedAt: book.CreatedAt.String(), UpdatedAt: book.UpdatedAt.String()},
 	}, nil
 }
+
+func (s *Server) DeleteBook(ctx context.Context, in *DeleteBookRequest) (*DeleteBookResponse, error) {
+	deletedBook := models.DeleteBook(in.Id)
+
+	if deletedBook.ID == 0 {
+		return &DeleteBookResponse{
+			Error: &ResponseError{
+				Code:    "404",
+				Message: "Book is not found",
+			},
+		}, nil
+	}
+
+	return &DeleteBookResponse{
+		Book: &Book{Id: deletedBook.ID, Title: deletedBook.Title, Summary: deletedBook.Summary, Author: deletedBook.Author, CreatedAt: deletedBook.CreatedAt.String(), UpdatedAt: deletedBook.UpdatedAt.String()},
+	}, nil
+}
