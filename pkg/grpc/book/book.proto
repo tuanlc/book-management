@@ -13,6 +13,13 @@ message Book {
   string updatedAt = 6;
 }
 
+service BookService {
+  rpc getBook(GetBookRequest) returns (GetBookResponse);
+  rpc listBooks(ListBookRequest) returns (ListBookResponse);
+  rpc createBook(CreateBookRequest) returns (CreateBookResponse);
+  rpc deleteBook(DeleteBookRequest) returns (DeleteBookResponse);
+}
+
 message GetBookRequest {
   int64 id = 1;
 }
@@ -46,8 +53,11 @@ message CreateBookResponse {
   Book book = 2;
 }
 
-service BookService {
-  rpc getBook(GetBookRequest) returns (GetBookResponse);
-  rpc listBooks(ListBookRequest) returns (ListBookResponse);
-  rpc createBook(CreateBookRequest) returns (CreateBookResponse);
+message DeleteBookRequest {
+  int64 id = 1;
+}
+
+message DeleteBookResponse {
+  optional ResponseError error = 1;
+  optional Book book = 2;
 }
