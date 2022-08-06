@@ -1,64 +1,54 @@
 package models
 
 import (
-	"time"
-
 	"github.com/tuanlc/book-management/pkg/config"
+	"github.com/tuanlc/book-management/pkg/types"
 	"gorm.io/gorm"
 )
 
 var db *gorm.DB
 
-type Book struct {
-	ID        int64     `gorm:"primaryKey" json:"id"`
-	Title     string    `json:"title"`
-	Author    string    `json:"author"`
-	Summary   string    `json:"summary"`
-	CreatedAt time.Time `json:"createAt"`
-	UpdatedAt time.Time `json:"updatedAt"`
-}
-
 func init() {
 	config.Connect()
 	db = config.GetDBClient()
-	db.AutoMigrate(&Book{})
+	db.AutoMigrate(&types.Book{})
 }
 
-func ListBooks() []Book {
-	var books []Book
+func ListBooks() []types.Book {
+	var books []types.Book
 	db.Find(&books)
 
 	return books
 }
 
-func DeleteBook(bookId int64) Book {
-	var book Book
+func DeleteBook(bookId int64) types.Book {
+	var book types.Book
 
 	db.Where("ID=?", bookId).Delete(&book)
 
 	return book
 }
 
-func GetBook(bookId int64) *Book {
-	var foundBook Book
+func GetBook(bookId int64) *types.Book {
+	var foundBook types.Book
 
 	db.Where("ID=?", bookId).Find(&foundBook)
 
 	return &foundBook
 }
 
-func CreateBook(b *Book) *Book {
-	book := Book{Title: b.Title, Author: b.Author, Summary: b.Summary}
+func CreateBook(b *types.CreateBookPayload) *types.Book {
+	book := types.Book{Title: b.Title, Author: b.Author, Summary: b.Summary}
 
 	db.Select("*").Create(&book)
 
 	return &book
 }
 
-func UpdateBook(bookId int64, data *Book) *Book {
-	var updateBook Book
+func UpdateBook(bookId int64, data *types.Book) *types.Book {
+	var updateBook types.Book
 
-	db.Model(&updateBook).Select("*").Where("ID=?", bookId).Updates(Book{Title: data.Title, Summary: data.Summary, Author: data.Author})
+	db.Model(&updateBook).Select("*").Where("ID=?", bookId).Updates(types.Book{Title: data.Title, Summary: data.Summary, Author: data.Author})
 
 	return &updateBook
 }
