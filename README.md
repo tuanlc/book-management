@@ -26,7 +26,7 @@ $ DATABASE_DNS=host=localhost user=admin password=admin dbname=book-management p
 
 ### Run
 ```sh
-$ make run
+$ make dev
 ```
 
 ## License

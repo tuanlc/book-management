@@ -6,6 +6,9 @@ deps:
 test:
 	go test ./... -v
 
+dev:
+	air
+
 build:
 	go build -o ${BINARY_NAME} ./cmd/main.go
 
