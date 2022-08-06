@@ -27,6 +27,15 @@ message GetBookResponse {
   optional Book book = 2;
 }
 
+message ListBookRequest {
+  
+}
+
+message ListBookResponse {
+  repeated Book books = 1;
+}
+
 service BookService {
   rpc getBook(GetBookRequest) returns (GetBookResponse);
+  rpc listBooks(ListBookRequest) returns (ListBookResponse);
 }
