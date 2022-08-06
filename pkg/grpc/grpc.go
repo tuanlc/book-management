@@ -10,7 +10,10 @@ import (
 )
 
 func Serve() {
-	lis, err := net.Listen("tcp", fmt.Sprintf(":%d", 8080))
+	fmt.Printf("Starting gRPC server!")
+
+	hostport := "localhost:9090"
+	lis, err := net.Listen("tcp", hostport)
 
 	if err != nil {
 		log.Fatalf("failed to listen: %v", err)
