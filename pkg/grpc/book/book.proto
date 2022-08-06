@@ -17,6 +17,16 @@ message GetBookRequest {
   int64 id = 1;
 }
 
+message ResponseError {
+  string code = 1;
+  string message = 2;
+}
+
+message GetBookResponse {
+  optional ResponseError error = 1;
+  optional Book book = 2;
+}
+
 service BookService {
-  rpc getBook(GetBookRequest) returns (Book);
+  rpc getBook(GetBookRequest) returns (GetBookResponse);
 }
