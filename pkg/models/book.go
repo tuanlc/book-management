@@ -37,7 +37,7 @@ func GetBook(bookId int64) *types.Book {
 	return &foundBook
 }
 
-func CreateBook(b *types.Book) *types.Book {
+func CreateBook(b *types.CreateBookPayload) *types.Book {
 	book := types.Book{Title: b.Title, Author: b.Author, Summary: b.Summary}
 
 	db.Select("*").Create(&book)

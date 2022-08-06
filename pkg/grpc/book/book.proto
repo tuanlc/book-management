@@ -35,7 +35,19 @@ message ListBookResponse {
   repeated Book books = 1;
 }
 
+message CreateBookRequest {
+  string title = 1;
+  string author = 2;
+  optional string summary = 3;
+}
+
+message CreateBookResponse {
+  ResponseError error = 1;
+  Book book = 2;
+}
+
 service BookService {
   rpc getBook(GetBookRequest) returns (GetBookResponse);
   rpc listBooks(ListBookRequest) returns (ListBookResponse);
+  rpc createBook(CreateBookRequest) returns (CreateBookResponse);
 }

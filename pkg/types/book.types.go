@@ -10,3 +10,9 @@ type Book struct {
 	CreatedAt time.Time `json:"createAt"`
 	UpdatedAt time.Time `json:"updatedAt"`
 }
+
+type CreateBookPayload struct {
+	Title   string
+	Author  string
+	Summary string
+}
