@@ -1,4 +1,4 @@
-name: Docker Image CI
+name: Project CI
 
 on:
   push:
@@ -7,18 +7,26 @@ on:
     branches: [ "main" ]
 
 jobs:
-
-  build:
-
+  test:
     runs-on: ubuntu-latest
 
+    steps:
+      - uses: actions/checkout@v3
+      - name: Install dependencies
+        run: make deps
+      - name: Unit test
+        run: make test
+
+  build:
+    needs: test
+    runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v3
     - name: Docker Build Push
       uses: mr-smithers-excellent/docker-build-push@v5
       with:
         image: tuanlc/book-management
-        tags: v1, latest
+        tags: latest
         registry: docker.io
         dockerfile: Dockerfile
         username: ${{ secrets.DOCKER_USERNAME }}

@@ -1,7 +1,7 @@
 BINARY_NAME=main.out
 
 deps:
-	go install github.com/cosmtrek/air@latest
+	go mod download
 
 test:
 	go test ./... -v
