@@ -17,6 +17,37 @@ You can use this project as the template for the following technologies.
 - Database: [PostgreSQL](https://www.postgresql.org/)
 - Hot reload: [Air](https://github.com/cosmtrek/air)
 
+## Demonstration
+You can experiment the project quickly on your local by using [docker compose](https://docs.docker.com/compose/).
+
+### Setup & up services
+
+```bash
+$ docker-compose pull
+$ docker-compose up -d
+```
+
+You can verify all service up without any error by:
+```bash
+$ docker-compose ps
+
+               Name                             Command               State                    Ports                  
+----------------------------------------------------------------------------------------------------------------------
+book-management-server               ./main.out                       Up      0.0.0.0:8080->8080/tcp,:::8080->8080/tcp
+book-management_database-manager_1   entrypoint.sh docker-php-e ...   Up      0.0.0.0:9000->8080/tcp,:::9000->8080/tcp
+database                             docker-entrypoint.sh postgres    Up      0.0.0.0:5432->5432/tcp,:::5432->5432/tcp
+```
+
+Services:
+- book-management-server: gRPC server is listening on port 8080
+- database: Postgresql database service
+- book-management_database-manager_1: Database management UI service
+
+### Test
+There is no gRPC client for the project yet. However, you can use Postman to test APIs. Thanks to [Postman](https://blog.postman.com/postman-now-supports-grpc/).
+
+https://user-images.githubusercontent.com/7950991/183283953-e9c0d295-2763-477a-ad00-97126879e273.mp4
+
 ## Development
 ### Prequisite
 - Install hot reload tool: https://github.com/cosmtrek/air
