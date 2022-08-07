@@ -25,7 +25,7 @@ jobs:
       uses: mr-smithers-excellent/docker-build-push@v5
       with:
         image: tuanlc/book-management
-        tags: v1, latest
+        tags: latest
         registry: docker.io
         dockerfile: Dockerfile
         username: ${{ secrets.DOCKER_USERNAME }}
