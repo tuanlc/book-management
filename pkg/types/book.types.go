@@ -16,3 +16,8 @@ type CreateBookPayload struct {
 	Author  string
 	Summary string
 }
+
+type ListBooksOptions struct {
+	Limit  int64
+	Offset int64
+}

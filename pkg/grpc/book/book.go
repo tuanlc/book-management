@@ -30,7 +30,9 @@ func (s *Server) GetBook(ctx context.Context, in *GetBookRequest) (*GetBookRespo
 }
 
 func (s *Server) ListBooks(ctx context.Context, in *ListBookRequest) (*ListBookResponse, error) {
-	books := models.ListBooks()
+	limit := in.GetLimit()
+	offset := in.GetOffset()
+	books := models.ListBooks(&types.ListBooksOptions{Limit: limit, Offset: offset})
 
 	responseBooks := make([]*Book, len(books))
 

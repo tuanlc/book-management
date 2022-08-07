@@ -35,7 +35,8 @@ message GetBookResponse {
 }
 
 message ListBookRequest {
-  
+  optional int64 limit = 1;
+  optional int64 offset = 2;
 }
 
 message ListBookResponse {
