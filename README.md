@@ -5,6 +5,14 @@
 [![MIT license](https://img.shields.io/badge/license-MIT-brightgreen.svg)](https://opensource.org/licenses/MIT)
 [![Go.Dev reference](https://img.shields.io/badge/go.dev-reference-blue?logo=go&logoColor=white)](https://pkg.go.dev/github.com/tuanlc/book-management)
 
+## Table Of Contents
+- [Motivation](#motivation)
+- [Technologies](#technologies)
+- [Demonstration](#demonstration)
+- [Development](#development)
+- [Production](#production)
+- [License](#license)
+
 ## Motivation
 I'm a Golang & gRPC newbie (August 2022). A good way to practice is working on a real opensource project, so I decided to create & work on the book management project with these technologies. If you are a newbie as me, don't hesitate to join me in contribute to this project. If you are an experienced developer, I'm highly appreciate you if you can take a look to the project structure, codebase, etc and give me any feedback on mistakes, good practices, etc. Feel free to create [issues](https://github.com/tuanlc/book-management/issues) or join the project [discussion](https://github.com/tuanlc/book-management/discussions)
 
