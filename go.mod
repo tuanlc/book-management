@@ -3,8 +3,14 @@ module github.com/tuanlc/book-management
 go 1.18
 
 require (
+	google.golang.org/grpc v1.47.0
+	google.golang.org/protobuf v1.28.0
+	gorm.io/driver/postgres v1.3.7
+	gorm.io/gorm v1.23.7
+)
+
+require (
 	github.com/golang/protobuf v1.5.2 // indirect
-	github.com/gorilla/mux v1.8.0 // indirect
 	github.com/jackc/chunkreader/v2 v2.0.1 // indirect
 	github.com/jackc/pgconn v1.12.1 // indirect
 	github.com/jackc/pgio v1.0.0 // indirect
@@ -20,8 +26,4 @@ require (
 	golang.org/x/sys v0.0.0-20220712014510-0a85c31ab51e // indirect
 	golang.org/x/text v0.3.7 // indirect
 	google.golang.org/genproto v0.0.0-20220711200234-e2551ce405a2 // indirect
-	google.golang.org/grpc v1.47.0 // indirect
-	google.golang.org/protobuf v1.28.0 // indirect
-	gorm.io/driver/postgres v1.3.7 // indirect
-	gorm.io/gorm v1.23.7 // indirect
 )
