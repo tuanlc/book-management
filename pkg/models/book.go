@@ -1,8 +1,6 @@
 package models
 
 import (
-	"fmt"
-
 	"github.com/tuanlc/book-management/pkg/config"
 	"github.com/tuanlc/book-management/pkg/types"
 	"gorm.io/gorm"
@@ -18,8 +16,6 @@ func init() {
 }
 
 func ListBooks(options *types.ListBooksOptions) []types.Book {
-	fmt.Printf("limit = %v", options)
-
 	var books []types.Book
 	db.Limit(int(options.Limit)).Offset(int(options.Offset)).Find(&books)
 

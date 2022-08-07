@@ -1,0 +1,32 @@
+version: "3.7"
+
+services:
+  database:
+    image: postgres:13.4
+    container_name: database
+    restart: always
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_USER=admin
+      - POSTGRES_PASSWORD=admin
+      - POSTGRES_DB=book-management
+      - PGDATA=var/lib/postgresql/data/pgdata
+    volumes:
+      - ../book-management-persistent/postgres:/var/lib/postgresql/data
+  database-manager:
+    image: adminer:4.8.1-standalone
+    restart: always
+    ports:
+      - 9000:8080
+    environment:
+      - ADMINER_DEFAULT_SERVER=database
+  book-management-server:
+    container_name: book-management-server
+    depends_on:
+      - "database"
+    image: tuanlc/book-management:latest
+    ports:
+      - "8080:8080"
+    environment:
+      - DATABASE_DNS=host=database user=admin password=admin dbname=book-management port=5432 sslmode=disable

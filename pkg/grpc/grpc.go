@@ -12,7 +12,7 @@ import (
 func Serve() {
 	fmt.Printf("Starting gRPC server!")
 
-	hostport := "localhost:8080"
+	hostport := ":8080"
 	lis, err := net.Listen("tcp", hostport)
 
 	if err != nil {
