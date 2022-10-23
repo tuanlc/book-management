@@ -37,6 +37,11 @@ $ DATABASE_DNS=host=localhost user=admin password=admin dbname=book-management p
 $ make dev
 ```
 
+### Unit test
+```sh
+$ make test
+```
+
 ## Production
 
 ### Run
